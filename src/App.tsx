@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { SimpleForm } from './forms/SimpleForm';
 import { FormWithCustomValidation } from './forms/FormWithCustomValidation';
 import './App.css';
+import { FormWithDate } from './forms/FormsWithDates';
 
 const components = [
   { name: 'SimpleForm', component: SimpleForm },
   { name: 'FormWithCustomValidation', component: FormWithCustomValidation },
+  { name: 'FromWithDates', component: FormWithDate },
 ];
 
 function App() {
