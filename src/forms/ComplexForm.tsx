@@ -1,14 +1,18 @@
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useState } from "react";
 
 type FormValues = {
   firstName: string;
+  agreeToTerms: boolean;
   age: number;
   email: string;
   startDate: string;
   endDate: string;
   birthDate: string;
   gender: string;
-  agreeToTerms: boolean;
+  range: number;
+  color: string;
+  radioOption: string;
 };
 
 export const ComplexForm = () => {
@@ -18,9 +22,11 @@ export const ComplexForm = () => {
     formState: { errors },
   } = useForm<FormValues>();
 
+  const [rangeValue, setRangeValue] = useState<number>(50);
+  const [colorValue, setColorValue] = useState<string>("#000000");
+
   const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
 
-  // Custom validation functions
   const validateFirstName = (value: string) => {
     if (!value) return "First name is required";
     if (value.length < 2) return "First name must be at least 2 characters";
@@ -74,6 +80,20 @@ export const ComplexForm = () => {
     return true;
   };
 
+  const validateRange = (value: number) => {
+    if (value < 0 || value > 100) return "Range must be between 0 and 100";
+    return true;
+  };
+
+  const validateColor = (value: string) => {
+    return true;
+  };
+
+  const validateRadioOption = (value: string) => {
+    if (!value) return "You must select an option";
+    return true;
+  };
+
   return (
     <form style={{ display: "flex", flexDirection: "column" }} onSubmit={handleSubmit(onSubmit)}>
       <h2>Comprehensive Form with Custom Validations</h2>
@@ -86,8 +106,8 @@ export const ComplexForm = () => {
         })}
       />
       {errors.firstName && <p>{errors.firstName.message}</p>}
-
       <input
+
         type="number"
         placeholder="Age"
         {...register("age", {
@@ -152,6 +172,62 @@ export const ComplexForm = () => {
         Agree to Terms
       </label>
       {errors.agreeToTerms && <p>{errors.agreeToTerms.message}</p>}
+
+      <input
+        type="range"
+        min="0"
+        max="100"
+        {...register("range", {
+          validate: validateRange,
+        })}
+        onChange={(e) => setRangeValue(Number(e.target.value))}
+      />
+      <p>Range value: {rangeValue}</p>
+      {errors.range && <p>{errors.range.message}</p>}
+
+      <input
+        type="color"
+        {...register("color", {
+          validate: validateColor,
+        })}
+        onChange={(e) => setColorValue(e.target.value)}
+      />
+      <p>Selected Color: <span style={{ color: colorValue }}>{colorValue}</span></p>
+
+      <fieldset>
+        <legend>Select an Option</legend>
+        <label>
+          <input
+            type="radio"
+            value="option1"
+            {...register("radioOption", {
+              validate: validateRadioOption,
+            })}
+          />
+          Option 1
+        </label>
+        <label>
+          <input
+            type="radio"
+            value="option2"
+            {...register("radioOption", {
+              validate: validateRadioOption,
+            })}
+          />
+          Option 2
+        </label>
+        <label>
+          <input
+            type="radio"
+            value="option3"
+            {...register("radioOption", {
+              validate: validateRadioOption,
+            })}
+          />
+          Option 3
+        </label>
+      </fieldset>
+      {errors.radioOption && <p>{errors.radioOption.message}</p>}
 
       <input type="submit" />
     </form>
