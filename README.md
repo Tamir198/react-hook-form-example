@@ -11,6 +11,9 @@ https://www.react-hook-form.com/
 
 https://react-hook-form.com/form-builder
 
+### Integrating with UI libraries (mui)
+https://react-hook-form.com/get-started#IntegratingwithUIlibraries
+
 ----
 ## Usage: 
 
@@ -35,6 +38,17 @@ An example can be found inside `SimpleForm.tsx` file
 
 ### Custom validation function 
 
+List of validation rules supported:
+`required,
+min,
+max,
+minLength,
+maxLength,
+pattern,
+validate`
+
+**For custom validation function**: 
+
 Go to `formWithCutomValidation.tsx`.<br>
 you will see custom functions named `validateFirstName` `validateOptionalField` `validateTaField`
 
@@ -44,6 +58,19 @@ you will see custom functions named `validateFirstName` `validateOptionalField` 
         placeholder="Optional field"
         {...register("optionalField", {
           validate: validateOptionalField,
+        })}
+      />
+```
+
+Validation dates : 
+
+Inside `FormWithDate` there is an example of how to validate dates (hint - use custom validation like before)  
+```js
+   <input
+        type="text"
+        placeholder="Birth Date (YYYY-MM-DD)"
+        {...register("birthDate", {
+          validate: validateBirthDate,
         })}
       />
 ```
