@@ -1,17 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { SimpleForm } from './forms/SimpleForm'
+import { useState } from 'react';
+import { SimpleForm } from './forms/SimpleForm';
+import { FormWithCustomValidation } from './forms/FormWithCustomValidation';
+import './App.css';
+
+const components = [
+  { name: 'SimpleForm', component: SimpleForm },
+  { name: 'FormWithCustomValidation', component: FormWithCustomValidation },
+];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
+
+  const handleTabChange = (index: number) => {
+    setCurrentComponentIndex(index);
+  };
+
+  const CurrentComponent = components[currentComponentIndex].component;
 
   return (
-    <>
-      <SimpleForm/>
-    </>
-  )
+    <div style={{ padding: '20px' }}>
+      <p>Check console after submitting data</p>
+      <div style={{ marginBottom: '20px' }}>
+        {components.map((comp, index) => (
+          <button
+            key={index}
+            onClick={() => handleTabChange(index)}
+            style={{ marginRight: '10px' }}
+          >
+            {comp.name}
+          </button>
+        ))}
+      </div>
+      <CurrentComponent />
+    </div>
+  );
 }
 
-export default App
+export default App;

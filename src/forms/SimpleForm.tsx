@@ -17,6 +17,7 @@ export const SimpleForm = () => {
 
   return (
     <form style={{display: "flex", flexDirection: "column"}} onSubmit={handleSubmit(onSubmit)}>
+        <h2>Using only the library basic stuff</h2>
       <input
         type="text"
         placeholder="First name"
