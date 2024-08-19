@@ -4,12 +4,14 @@ import { FormWithCustomValidation } from './forms/FormWithCustomValidation';
 import './App.css';
 import { FormWithDate } from './forms/FormsWithDates';
 import { ComplexForm } from './forms/ComplexForm';
+import { TestForm } from './forms/testForm';
 
 const components = [
   { name: 'SimpleForm', component: SimpleForm },
   { name: 'FormWithCustomValidation', component: FormWithCustomValidation },
   { name: 'FromWithDates', component: FormWithDate },
   { name: 'ComplexForm', component: ComplexForm },
+  { name: 'TestForm', component: TestForm },
 ];
 
 function App() {
