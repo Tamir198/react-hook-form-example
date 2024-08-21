@@ -5,6 +5,7 @@ import CustomCheckbox from "./CustomCheckbox";
 import CustomSelect from "./CustomSelect";
 import CustomRange from "./CustomRange";
 import CustomRadio from "./CustomRadio";
+import CustomMuiCheckbox from "./CustomMuiCheckbox";
 
 type FormValues = {
   firstName: string;
@@ -277,6 +278,24 @@ export const ComplexFormWithController = () => {
               { label: "Option 3", value: "option3" },
             ]}
             error={errors.radioOption?.message}
+          />
+        )}
+      />
+
+      <Controller
+        name="agreeToTerms"
+        control={control}
+        rules={{
+          validate: (value) => {
+            if (!value) return "You must agree to the terms and conditions";
+            return true;
+          },
+        }}
+        render={({ field }) => (
+          <CustomMuiCheckbox
+            {...field}
+            label="Agree to Terms"
+            error={errors.agreeToTerms?.message}
           />
         )}
       />
