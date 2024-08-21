@@ -6,6 +6,7 @@ import { FormWithDate } from "./forms/FormsWithDates";
 import { ComplexForm } from "./forms/ComplexForm";
 import { TestForm } from "./forms/testForm";
 import { FormWithCustomInput } from "./forms/FormWithCustomInput";
+import { ComplexFormWithController } from "./forms/ComplexFormWithController";
 
 const components = [
   { name: "SimpleForm", component: SimpleForm },
@@ -14,6 +15,7 @@ const components = [
   { name: "ComplexForm", component: ComplexForm },
   { name: "TestForm", component: TestForm },
   { name: "FormWithCustomInput", component: FormWithCustomInput },
+  { name: "ComplexFormWithController  ", component: ComplexFormWithController },
 ];
 
 function App() {
