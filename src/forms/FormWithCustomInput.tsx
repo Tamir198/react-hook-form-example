@@ -1,4 +1,5 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import CustomInput from "./CustomInput";
 
 type FormValues = {
   firstName: string;
@@ -8,7 +9,7 @@ type FormValues = {
 
 export const FormWithCustomInput = () => {
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
@@ -20,19 +21,22 @@ export const FormWithCustomInput = () => {
       style={{ display: "flex", flexDirection: "column" }}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <input
-        type="text"
-        placeholder="First name"
-        {...register("firstName", {
+      <h2>Using Custom Input with Controller</h2>
+      <Controller
+        name="firstName"
+        control={control}
+        defaultValue=""
+        rules={{
           required: "First name is required",
-          maxLength: {
-            value: 80,
-            message: "First name cannot exceed 80 characters",
-          },
-        })}
+        }}
+        render={({ field }) => (
+          <CustomInput
+            {...field}
+            placeholder="First name"
+            error={errors.firstName?.message}
+          />
+        )}
       />
-      {errors.firstName && <p>{errors.firstName.message}</p>}
-
       <input type="submit" />
     </form>
   );
