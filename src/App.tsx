@@ -1,17 +1,19 @@
-import { useState } from 'react';
-import { SimpleForm } from './forms/SimpleForm';
-import { FormWithCustomValidation } from './forms/FormWithCustomValidation';
-import './App.css';
-import { FormWithDate } from './forms/FormsWithDates';
-import { ComplexForm } from './forms/ComplexForm';
-import { TestForm } from './forms/testForm';
+import { useState } from "react";
+import { SimpleForm } from "./forms/SimpleForm";
+import { FormWithCustomValidation } from "./forms/FormWithCustomValidation";
+import "./App.css";
+import { FormWithDate } from "./forms/FormsWithDates";
+import { ComplexForm } from "./forms/ComplexForm";
+import { TestForm } from "./forms/testForm";
+import { FormWithCustomInput } from "./forms/FormWithCustomInput";
 
 const components = [
-  { name: 'SimpleForm', component: SimpleForm },
-  { name: 'FormWithCustomValidation', component: FormWithCustomValidation },
-  { name: 'FromWithDates', component: FormWithDate },
-  { name: 'ComplexForm', component: ComplexForm },
-  { name: 'TestForm', component: TestForm },
+  { name: "SimpleForm", component: SimpleForm },
+  { name: "FormWithCustomValidation", component: FormWithCustomValidation },
+  { name: "FromWithDates", component: FormWithDate },
+  { name: "ComplexForm", component: ComplexForm },
+  { name: "TestForm", component: TestForm },
+  { name: "FormWithCustomInput", component: FormWithCustomInput },
 ];
 
 function App() {
@@ -24,14 +26,14 @@ function App() {
   const CurrentComponent = components[currentComponentIndex].component;
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div style={{ padding: "20px" }}>
       <p>Check console after submitting data</p>
-      <div style={{ marginBottom: '20px' }}>
+      <div style={{ marginBottom: "20px" }}>
         {components.map((comp, index) => (
           <button
             key={index}
             onClick={() => handleTabChange(index)}
-            style={{ marginRight: '10px' }}
+            style={{ marginRight: "10px" }}
           >
             {comp.name}
           </button>

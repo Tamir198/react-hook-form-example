@@ -81,7 +81,7 @@ export const ComplexForm = () => {
   };
 
   const validateRange = (value: number) => {
-    if (value < 0 || value > 100) return "Range must be between 0 and 100";
+    if (value < 50 || value > 70) return "Range must be between 50 and 70";
     return true;
   };
 
@@ -95,9 +95,12 @@ export const ComplexForm = () => {
   };
 
   return (
-    <form style={{ display: "flex", flexDirection: "column" }} onSubmit={handleSubmit(onSubmit)}>
+    <form
+      style={{ display: "flex", flexDirection: "column" }}
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <h2>Comprehensive Form with Custom Validations</h2>
-      
+
       <input
         type="text"
         placeholder="First Name"
@@ -107,7 +110,6 @@ export const ComplexForm = () => {
       />
       {errors.firstName && <p>{errors.firstName.message}</p>}
       <input
-
         type="number"
         placeholder="Age"
         {...register("age", {
@@ -152,9 +154,11 @@ export const ComplexForm = () => {
       />
       {errors.birthDate && <p>{errors.birthDate.message}</p>}
 
-      <select {...register("gender", {
-        validate: validateGender,
-      })}>
+      <select
+        {...register("gender", {
+          validate: validateGender,
+        })}
+      >
         <option value="">Select Gender</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
@@ -192,7 +196,9 @@ export const ComplexForm = () => {
         })}
         onChange={(e) => setColorValue(e.target.value)}
       />
-      <p>Selected Color: <span style={{ color: colorValue }}>{colorValue}</span></p>
+      <p>
+        Selected Color: <span style={{ color: colorValue }}>{colorValue}</span>
+      </p>
 
       <fieldset>
         <legend>Select an Option</legend>

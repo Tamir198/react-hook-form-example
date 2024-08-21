@@ -16,6 +16,7 @@ export const FormWithCustomValidation = () => {
   const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
 
   // Custom validation functions
+  
   const validateFirstName = (value: string) => {
     if (!value.trim()) return "First name is required";
     if (value.length > 80) return "First name cannot exceed 80 characters";
@@ -41,6 +42,7 @@ export const FormWithCustomValidation = () => {
         placeholder="First name"
         {...register("firstName", {
           validate: validateFirstName,
+            
         })}
       />
       {errors.firstName && <p>{errors.firstName.message}</p>}
